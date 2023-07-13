@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_pong/pong.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,8 +12,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        body: SafeArea(
+          child: Pong(),
         ),
       ),
     );

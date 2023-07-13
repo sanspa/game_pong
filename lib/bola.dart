@@ -7,8 +7,8 @@ class Bola extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: diameter,
       height: diameter,
+      width: diameter,
       decoration: BoxDecoration(
         color: Colors.orange,
         shape: BoxShape.circle,
