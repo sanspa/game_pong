@@ -9,12 +9,33 @@ class Pong extends StatefulWidget {
   State<Pong> createState() => _PongState();
 }
 
-class _PongState extends State<Pong> {
+class _PongState extends State<Pong> with SingleTickerProviderStateMixin {
   double lebarScreen = 200;
   double tinggiScreen = 500;
   double diameter = 50;
   double panjangPemukul = 100;
   double lebarPemukul = 25;
+  late double posX;
+  late double posY;
+  late Animation<double> animasi;
+  late AnimationController kontrolAnimasi;
+
+  @override
+  void initState(){
+    posX = 0;
+    posY = 0;
+    kontrolAnimasi = AnimationController(vsync: this, duration: const Duration(seconds: 5),);
+    animasi = Tween<double>(begin: 0, end: 300).animate(kontrolAnimasi);
+    animasi.addListener(() {
+      setState(() {
+        posX++;
+        posY++;
+      });
+    });
+    kontrolAnimasi.forward();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraint) {
@@ -26,7 +47,8 @@ class _PongState extends State<Pong> {
       return Stack(
         children: [
           Positioned(
-            top: 10,
+            top: posY,
+            left: posY,
             child: Bola(diameter: diameter),
           ),
           Positioned(
